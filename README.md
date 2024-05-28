@@ -90,5 +90,3 @@ Before building, set resolveJsonModule to 'true' :
 
 This app is on Angular 13. Update to latest Angular 14 with:
 `ng update @angular/cli@14 @angular/core@14`
-
-
