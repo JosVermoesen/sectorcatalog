@@ -1,0 +1,91 @@
+{
+  "NAVBAR": {
+    "NavTitle": "Api Voorbeelden",
+    "NavAbout": "Deze App",
+    "NavSettings": "Instellingen",
+    "LanguageModalTitle": "Taalkeuze:",
+    "LanguageModalCloseBtnName": "Sluiten"
+  },
+
+  "FOOTER": {
+    "Title": "ng-ApiDemo"
+  },
+
+  "COMMON": {
+    "MessageApiWaiting": "Een ogenblik...",
+    "MessageApiError": "API is nu niet beschikbaar. Probeer later opnieuw!"
+  },
+
+  "HOME": {
+    "Carousel-Image1": "assets/images/carousel/SC_logo_grey.png",
+    "Carousel-Alt1": "eerste slide",
+    "Carousel-Link1": "/sector-catalog",
+    "Carousel-WindowLink1": "",
+    "Carousel-Label1": "Makelaar?",
+    "Carousel-Info1": "Ontdek en integreer eenvoudig de producten van de verschillende verzekeringsmaatschappijen op de website van uw klant./sector-catalog",
+    "Carousel-Button1": "Ga naar de pagina",
+
+    "Carousel-Image2": "assets/images/carousel/SC_logo_grey.png",
+    "Carousel-Alt2": "tweede slide",
+    "Carousel-Link2": "/sector-catalog",
+    "Carousel-Label2": "Verzekeraar?",
+    "Carousel-Info2": "Publiceer alle documentatie over uw producten op het platform.",
+    "Carousel-Button2": "Probeer de API",
+
+    "Carousel-Image3": "assets/images/carousel/SC_logo_grey.png",
+    "Carousel-Alt3": "derde slide",
+    "Carousel-Link3": "/sector-catalog",
+    "Carousel-Label3": "Ontwikkelaar?",
+    "Carousel-Info3": "Integreer de nieuwe Folders op de website van de makelaar met behulp van een enkele code die alle noodzakelijke informatie bevat.",
+    "Carousel-Button3": "Test de demo"
+  },
+
+  "ABOUT": {
+    "MainTitle": "Over deze App",
+    "MainSub": "Eenvoudige single page toepassing ontwikkeld met Angular en o.a. bootstrap, fontawesome en ngx-translate.",
+    "OpenSourceTitle": "Open Source",
+    "OpenSourceSub": "Op onze github pagina vind U de broncode van deze toepassing voor download en studie.",
+    "GithubUrl": "https://github.com/JosVermoesen/sectorcatalog",
+    "GithubButton": "Broncode op Github",
+    "Image": "assets/images/about/about2.jfif"
+  },
+
+  "CORONA": {
+    "TabGlobal": "Cijfers Wereldwijd",
+
+    "WorldLabelLatestUpdate": "Bijgewerkt op",
+    "WorldLabelCases": "Totaal vaststellingen",
+    "WorldLabelTodayCases": "Vaststellingen vandaag",
+    "WorldLabelDeaths": "Totaal sterfgevallen",
+    "WorldLabelTodayDeaths": "Sterfgevallen vandaag",
+    "WorldLabelRecovered": "Aantal hersteld",
+    "WorldLabelActive": "Aantal ziek",
+    "WorldLabelCritical": "Aantal kritiek",
+    "WorldLabelCasesPerOneMillion": "Vaststellingen per miljoen",
+    "WorldLabelDeathsPerOneMillion": "Sterfgevallen per miljoen",
+    "WorldLabelTests": "Aantal tests",
+    "WorldLabelTestsPerOneMillion": "Tests per miljoen",
+    "WorldLabelAffectedCountries": "Getroffen landen",
+
+    "TabCountryStatus": "Vandaag",
+    "ButtonGetHistoryData": "Grafiekdata ophalen",
+    "LabelCountryLatestUpdate": "Bijgewerkt op",
+    "LabelCountryTodayCases": "Vaststellingen vandaag",
+    "LabelCountryTodayDeaths": "Sterfgevallen vandaag",
+    "LabelCountryTotalCases": "Totaal vaststellingen zonder vandaag",
+    "LabelCountryTotalDeaths": "Totaal sterfgevallen zonder vandaag",
+    "LabelCountryTotalRecovered": "Totaal hersteld zonder vandaag",
+    "LabelCountryTotalActive": "Totaal in behandeling",
+    "LabelCountryTotalCritical": "Totaal kritiek",
+    "LabelCountryPerMillionCases": "Vaststellingen per miljoen inwoners",
+    "LabelCountryPerMillionDeaths": "Sterfgevallen per miljoen inwoners",
+    "LabelCountryTests": "Totaal tests",
+    "LabelCountryPerMillionTests": "Tests per miljoen inwoners",
+
+    "TabGraphData": "Grafische som",
+    "TabGraphEvalData": "Dagcijfers grafisch",
+    "GraphLabel1": "Zieken",
+    "GraphLabel2": "Sterfgevallen",
+    "GraphLabel3": "Hersteld"
+  }
+}
