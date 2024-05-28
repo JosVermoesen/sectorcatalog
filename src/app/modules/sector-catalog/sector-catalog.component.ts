@@ -4,7 +4,7 @@ import { createHttpObservable } from './_common/util';
 import { map, shareReplay, tap } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
-import { Company } from './_models/ICatalog';
+import { Company, Folder } from './_models/ICatalog';
 
 @Component({
   selector: 'app-sector-catalog',
@@ -20,6 +20,7 @@ export class SectorCatalogComponent implements OnInit {
   allCatalogs$: Company[];
 
   whateverResult$: any;
+  searchResult$: any;
 
   constructor() {}
 
@@ -29,9 +30,7 @@ export class SectorCatalogComponent implements OnInit {
       'https://app.sectorcatalog.be/SectorCatalogBE/feed/v2/digestedcatalogItems?format=json&SecureGuid=' +
       environment.brokerKey;
 
-    console.log('before http');
     const http$ = createHttpObservable(sectorCatalogUrl);
-    console.log('after http');
     this.whateverResult$ = http$.pipe(
       tap(() => console.log('HTTP request executed')),
       map((res) => Object.values(res['Companies'])),
@@ -55,19 +54,41 @@ export class SectorCatalogComponent implements OnInit {
     );
   }
 
-  checkGenerali(choosen: Company) {
+  companyCheck(choosen: Company) {
     console.log(choosen);
-    this.whateverResult$.subscribe(
-      (res: Company[]) => {
-        this.insurer$ = res
-          .filter(res => res.Folders[0].FolderDescription.NL == 'NL');
-      },
-      noop,
-      () => {
-        console.log('completed');
-        console.log('found: ', this.insurer$.length);
-        console.log(this.insurer$);
-      }
-    );
+    choosen.Folders.forEach((folder: Folder) => {
+      folder.Items.forEach((item) => {
+        // Category
+        // 'IBPI-04' URL is web link
+
+        // SubCategory
+        // 'IBPSC-01' URL is weblink
+        // 'IBPSC-05 URL is mp4 file
+        // 'IBPSC-10' URL is gif file
+        // 'IBPSC-11' URL is pdf file
+        // 'IBPSC-12' URL is minisite
+        // 'IBPSC-15' URL is gif file
+
+        console.log(item);
+        console.log(item.Url);
+      });
+    });
+  }
+
+  federationCheck(choosen: Company) {
+    choosen.Folders.forEach((folder: Folder) => {
+      folder.Items.forEach((item) => {
+        // Category
+        // 'IBPI-04' URL is web link
+
+        // SubCategory
+        // 'IBPSC-01' URL is weblink
+        // 'IBPSC-05 URL is mp4 file
+        // 'IBPSC-10' URL is gif file
+        // 'IBPSC-12' URL is minisite
+        console.log(item);
+        console.log(item.Url);
+      });
+    });
   }
 }
