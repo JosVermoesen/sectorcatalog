@@ -2,7 +2,7 @@
 
 ## Getting started for users
 
-Live version here: [site](https://apidemos.vsoft.be)
+Live version here: [site](https://sectorcatalog.vsoft.be)
 
 ## API Sources used for this app
 
