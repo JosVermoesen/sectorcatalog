@@ -1,17 +1,19 @@
-<div *ngFor="let user of users$ | async">
-  {{ user.name }}
-</div>
-<br />
-<div *ngFor="let age of userage$ | async">
-  {{ age }}
-</div>
-<br />
-Greater than 30
-<div *ngFor="let user of useragefiltergreaterthan$ | async">
-  {{ user.name }} - {{ user.age }}
-</div>
-<br />
-Less than 30
-<div *ngFor="let user of useragefilterlessthan$ | async">
-  {{ user.name }} - {{ user.age }}
+<div *ngIf="data$ | async as data">
+  <div *ngFor="let user of data.users">
+    {{ user.name }}
+  </div>
+  <br />
+  <div *ngFor="let age of data.userage">
+    {{ age }}
+  </div>
+  <br />
+  Greater than 30
+  <div *ngFor="let user of data.useragefiltergreaterthan">
+    {{ user.name }} - {{ user.age }}
+  </div>
+  <br />
+  Less than 30
+  <div *ngFor="let user of data.useragefilterlessthan">
+    {{ user.name }} - {{ user.age }}
+  </div>
 </div>
