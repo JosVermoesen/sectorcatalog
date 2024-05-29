@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, Validators, UntypedFormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 
 import { BsModalRef } from 'ngx-bootstrap/modal';
@@ -16,9 +16,9 @@ export class CatalogDetailsComponent implements OnInit {
 
   public onSelected: Subject<boolean>;
 
-  catForm: FormGroup;
+  catForm: UntypedFormGroup;
 
-  constructor(public bsModalRef: BsModalRef, private fb: FormBuilder) {}
+  constructor(public bsModalRef: BsModalRef, private fb: UntypedFormBuilder) {}
 
   ngOnInit() {
    /*  this.catForm = this.fb.group({
