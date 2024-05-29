@@ -24,8 +24,7 @@ export class SectorCatalogComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {
-    // tslint:disable-next-line: max-line-length
+  ngOnInit() {    
     const sectorCatalogUrl =
       'https://app.sectorcatalog.be/SectorCatalogBE/feed/v2/digestedcatalogItems?format=json&SecureGuid=' +
       environment.brokerKey;
