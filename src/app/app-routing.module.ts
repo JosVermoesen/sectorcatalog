@@ -31,7 +31,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/chart/chart.routes').then((m) => m.CHART_ROUTES),
   },
-  { path: 'rxjstesting', loadChildren: () => import('./modules/rxjstesting/rxjstesting.module').then(m => m.RxjstestingModule) },
+  {
+    path: 'rxjstesting',
+    loadChildren: () =>
+      import('./modules/rxjstesting/rxjstesting.routes').then(
+        (m) => m.RXJSTESTING_ROUTES
+      ),
+  },
   { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];
 

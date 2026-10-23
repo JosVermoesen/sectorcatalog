@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
 import { combineLatest, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from './_models/IUser';
@@ -7,8 +8,9 @@ import { User } from './_models/IUser';
     selector: 'app-rxjstesting',
     templateUrl: './rxjstesting.component.html',
     styleUrls: ['./rxjstesting.component.scss'],
+    imports: [AsyncPipe],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    standalone: true
 })
 export class RxjstestingComponent implements OnInit {
   users: User[] = [
