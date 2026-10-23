@@ -17,7 +17,7 @@ const routes: Routes = [
   {
     path: 'about',
     loadChildren: () =>
-      import('./modules/about/about.module').then((m) => m.AboutModule),
+      import('./modules/about/about.routes').then((m) => m.ABOUT_ROUTES),
   },
   {
     path: 'unsplash',
