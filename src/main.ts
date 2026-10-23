@@ -1,12 +1,32 @@
-import { enableProdMode, provideZoneChangeDetection } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { enableProdMode, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { provideRouter } from '@angular/router';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
+import { provideTranslateService } from '@ngx-translate/core';
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
+import { BsModalRef, ModalModule } from 'ngx-bootstrap/modal';
 
-import { AppModule } from './app/app.module';
+import { AppComponent } from './app/app.component';
+import { APP_ROUTES } from './app/app.routes';
 import { environment } from './environments/environment';
 
 if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule, { applicationProviders: [provideZoneChangeDetection()], })
-  .catch(err => console.error(err));
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideZoneChangeDetection(),
+    provideAnimations(),
+    provideRouter(APP_ROUTES),
+    provideTranslateService({
+      loader: provideTranslateHttpLoader({ prefix: 'assets/i18n/', suffix: '.json' })
+    }),
+    provideHttpClient(withXhr(), withInterceptorsFromDi()),
+    importProvidersFrom(ModalModule),
+    BsModalRef,
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
+  ]
+}).catch(err => console.error(err));

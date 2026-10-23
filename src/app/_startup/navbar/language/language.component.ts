@@ -9,7 +9,7 @@ import { LanguageService } from '../../language.service';
     templateUrl: './language.component.html',
     styleUrls: ['./language.component.css'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    standalone: true
 })
 export class LanguageComponent implements OnInit {
   title = '';

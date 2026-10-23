@@ -7,7 +7,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
     templateUrl: './footer.component.html',
     styleUrls: ['./footer.component.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    standalone: true
 })
 export class FooterComponent {
   // version: string = version;
