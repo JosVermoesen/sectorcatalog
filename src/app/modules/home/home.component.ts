@@ -1,11 +1,13 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-
-import { CarouselConfig } from 'ngx-bootstrap/carousel';
+import { RouterLink } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
+import { CarouselModule, CarouselConfig } from 'ngx-bootstrap/carousel';
 
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css'],
+    imports: [CarouselModule, TranslatePipe, RouterLink],
     providers: [
         {
             provide: CarouselConfig,
@@ -13,7 +15,7 @@ import { CarouselConfig } from 'ngx-bootstrap/carousel';
         },
     ],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    standalone: true
 })
 export class HomeComponent implements OnInit {
 
