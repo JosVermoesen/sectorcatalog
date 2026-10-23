@@ -9,7 +9,7 @@ import { CatalogDetailsComponent } from './../catalog-details/catalog-details.co
     selector: 'app-catalogs-card-list',
     templateUrl: './catalogs-card-list.component.html',
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    standalone: true
 })
 export class CatalogsCardListComponent implements OnInit {
   bsModalRef: BsModalRef;

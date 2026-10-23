@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { UntypedFormBuilder, Validators, UntypedFormGroup } from '@angular/forms';
+import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 
 import { BsModalRef } from 'ngx-bootstrap/modal';
@@ -9,8 +9,9 @@ import { ICatalog } from "../_models/ICatalog";
 @Component({
     selector: 'app-catalog-details',
     templateUrl: './catalog-details.component.html',
+    imports: [ReactiveFormsModule],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    standalone: true
 })
 export class CatalogDetailsComponent implements OnInit {
   title = '';

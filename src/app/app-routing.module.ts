@@ -10,8 +10,8 @@ const routes: Routes = [
   {
     path: 'sector-catalog',
     loadChildren: () =>
-      import('./modules/sector-catalog/sector-catalog.module').then(
-        (m) => m.SectorCatalogModule
+      import('./modules/sector-catalog/sector-catalog.routes').then(
+        (m) => m.SECTOR_CATALOG_ROUTES
       ),
   },
   {

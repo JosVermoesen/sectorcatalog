@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, computed, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { TranslatePipe } from '@ngx-translate/core';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 import { finalize, map } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
@@ -14,8 +16,9 @@ interface SectorCatalogResponse {
     selector: 'app-sector-catalog',
     templateUrl: './sector-catalog.component.html',
     styleUrls: ['./sector-catalog.component.scss'],
+    imports: [TabsModule, TranslatePipe],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    standalone: true
 })
 export class SectorCatalogComponent implements OnInit {
   private readonly http = inject(HttpClient);
