@@ -1,17 +1,14 @@
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
-}
+import { provideTranslateService, TranslatePipe } from '@ngx-translate/core';
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
@@ -22,34 +19,25 @@ import { LanguageComponent } from './_startup/navbar/language/language.component
 import { FooterComponent } from './_startup/footer/footer.component';
 import { NavbarComponent } from './_startup/navbar/navbar.component';
 
-@NgModule({
-    declarations: [
+@NgModule({ declarations: [
         AppComponent,
         LanguageComponent,
         NavbarComponent,
         FooterComponent
     ],
-    imports: [
-        BrowserModule,
+    bootstrap: [AppComponent], imports: [BrowserModule,
         BrowserAnimationsModule,
-        HttpClientModule,
-        CarouselModule.forRoot(),
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: createTranslateLoader,
-                deps: [HttpClient]
-            }
-        }),
-        ModalModule.forRoot(),
+        CarouselModule,
+        TranslatePipe,
+        ModalModule,
         FontAwesomeModule,
-        AppRoutingModule
-    ],
-    providers: [
+        AppRoutingModule], providers: [
         LanguageService,
         BsModalRef,
-        { provide: LocationStrategy, useClass: HashLocationStrategy }
-    ],
-    bootstrap: [AppComponent]
-})
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        provideTranslateService({
+            loader: provideTranslateHttpLoader({ prefix: 'assets/i18n/', suffix: '.json' })
+        }),
+        provideHttpClient(withXhr(), withInterceptorsFromDi())
+    ] })
 export class AppModule { }

@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { BaseChartDirective } from 'ng2-charts';
 
 @Component({
-  selector: 'app-my-radar-chart',
-  templateUrl: './my-radar-chart.component.html',
-  styleUrls: ['./my-radar-chart.component.css']
+    selector: 'app-my-radar-chart',
+    templateUrl: './my-radar-chart.component.html',
+    styleUrls: ['./my-radar-chart.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: true,
+    imports: [BaseChartDirective]
 })
 export class MyRadarChartComponent implements OnInit {
 

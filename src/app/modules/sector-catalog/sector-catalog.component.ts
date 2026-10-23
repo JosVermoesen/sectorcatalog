@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { noop } from 'rxjs';
 import { createHttpObservable } from './_common/util';
 import { map, shareReplay, tap } from 'rxjs/operators';
@@ -7,17 +7,19 @@ import { environment } from 'src/environments/environment';
 import { Company, Folder } from './_models/ICatalog';
 
 @Component({
-  selector: 'app-sector-catalog',
-  templateUrl: './sector-catalog.component.html',
-  styleUrls: ['./sector-catalog.component.scss'],
+    selector: 'app-sector-catalog',
+    templateUrl: './sector-catalog.component.html',
+    styleUrls: ['./sector-catalog.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class SectorCatalogComponent implements OnInit {
   apiError = false;
 
-  federations$: Company[];
-  insurers$: Company[];
-  insurer$: Company[];
-  allCatalogs$: Company[];
+  federations$: Company[] = [];
+  insurers$: Company[] = [];
+  insurer$: Company[] = [];
+  allCatalogs$: Company[] = [];
 
   whateverResult$: any;
   searchResult$: any;
@@ -32,7 +34,7 @@ export class SectorCatalogComponent implements OnInit {
     const http$ = createHttpObservable(sectorCatalogUrl);
     this.whateverResult$ = http$.pipe(
       tap(() => console.log('HTTP request executed')),
-      map((res) => Object.values(res['Companies'])),
+      map((res: any) => Object.values((res as any)?.Companies ?? {})),
       shareReplay()
     );
 

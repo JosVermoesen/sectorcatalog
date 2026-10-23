@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { BaseChartDirective } from 'ng2-charts';
 
 @Component({
-  selector: 'app-my-line-chart',
-  templateUrl: './my-line-chart.component.html',
-  styleUrls: ['./my-line-chart.component.css']
+    selector: 'app-my-line-chart',
+    templateUrl: './my-line-chart.component.html',
+    styleUrls: ['./my-line-chart.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: true,
+    imports: [BaseChartDirective]
 })
 export class MyLineChartComponent implements OnInit {
 

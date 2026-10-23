@@ -33,7 +33,6 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "./node_modules/chart.js/dist/Chart.js",
               "./node_modules/jquery/dist/jquery.min.js",
               "./node_modules/bootstrap/dist/js/bootstrap.min.js"
             ],
@@ -78,18 +77,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "api-demos:build"
+            "buildTarget": "api-demos:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "api-demos:build:production"
+              "buildTarget": "api-demos:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "api-demos:build"
+            "buildTarget": "api-demos:build"
           }
         },
         "test": {
@@ -126,5 +125,31 @@
   },
   "cli": {
     "analytics": "45bc7254-7ce6-405d-986a-4443f7ff615b"
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "type": "component"
+    },
+    "@schematics/angular:directive": {
+      "type": "directive"
+    },
+    "@schematics/angular:service": {
+      "type": "service"
+    },
+    "@schematics/angular:guard": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:interceptor": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:module": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:pipe": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:resolver": {
+      "typeSeparator": "."
+    }
   }
 }

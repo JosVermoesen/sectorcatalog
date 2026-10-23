@@ -1,9 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "~bootstrap/dist/css/bootstrap.min.css";
-// Choose BOOTSTRAP 4.4.1 Default Theme
+// Choose Bootstrap default theme
 // @import "~bootstrap/dist/css/bootstrap.min.css";
-// Or choose BOOTSWATCH 4.1.1 Free Themes
+// Or choose a Bootswatch theme
 // @import "~bootswatch/dist/cerulean/bootstrap.min.css";
 // @import "~bootswatch/dist/cosmo/bootstrap.min.css";
 @import "~bootswatch/dist/darkly/bootstrap.min.css";
@@ -25,13 +25,13 @@
 // @import "~bootswatch/dist/united/bootstrap.min.css";
 // @import "~bootswatch/dist/yeti/bootstrap.min.css";
 
-/* Bootstrap 4.x default 
+/* Bootstrap default 
 html {
   font-size: 16px;
 } */
 
 
-/* Bootstrap 4.x small */
+/* Compact base font size */
 
 html {
     font-size: 14px;

@@ -1,19 +1,29 @@
-<div *ngIf="data$ | async as data">
-  <div *ngFor="let user of data.users">
-    {{ user.name }}
+@if (data$ | async; as data) {
+  <div>
+    @for (user of data.users; track user) {
+      <div>
+        {{ user.name }}
+      </div>
+    }
+    <br />
+    @for (age of data.userage; track age) {
+      <div>
+        {{ age }}
+      </div>
+    }
+    <br />
+    Greater than 30
+    @for (user of data.useragefiltergreaterthan; track user) {
+      <div>
+        {{ user.name }} - {{ user.age }}
+      </div>
+    }
+    <br />
+    Less than 30
+    @for (user of data.useragefilterlessthan; track user) {
+      <div>
+        {{ user.name }} - {{ user.age }}
+      </div>
+    }
   </div>
-  <br />
-  <div *ngFor="let age of data.userage">
-    {{ age }}
-  </div>
-  <br />
-  Greater than 30
-  <div *ngFor="let user of data.useragefiltergreaterthan">
-    {{ user.name }} - {{ user.age }}
-  </div>
-  <br />
-  Less than 30
-  <div *ngFor="let user of data.useragefilterlessthan">
-    {{ user.name }} - {{ user.age }}
-  </div>
-</div>
+}

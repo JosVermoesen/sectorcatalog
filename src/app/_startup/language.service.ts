@@ -12,8 +12,9 @@ export class LanguageService {
   constructor(private translate: TranslateService) { }
 
   setInitialAppLanguage() {
-    const language = this.translate.getBrowserLang();
-    this.translate.setDefaultLang(language);
+    const language = this.translate.getBrowserLang() ?? 'en';
+    this.translate.setFallbackLang(language);
+    this.translate.use(language);
 
     const val = localStorage.getItem(LNG_KEY);
     if (val) {
@@ -55,7 +56,7 @@ export class LanguageService {
     ];
   }
 
-  setLanguage(lng) {
+  setLanguage(lng: string) {
     this.translate.use(lng);
     this.selected = lng;
     localStorage.setItem(LNG_KEY, lng);

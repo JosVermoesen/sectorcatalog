@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ChartsModule } from 'ng2-charts';
+import { BaseChartDirective, provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 
 import { ChartRoutingModule } from './chart-routing.module';
@@ -15,18 +15,20 @@ import { MyBarChartComponent } from './my-bar-chart/my-bar-chart.component';
 
 @NgModule({
   declarations: [
-    ChartComponent,
-    MyBarChartComponent,
-    MyLineChartComponent,
-    MyDoughnutChartComponent,
-    MyRadarChartComponent,
-    MyPieChartComponent
+    ChartComponent
   ],
   imports: [
     CommonModule,
     ChartRoutingModule,
-    ChartsModule,
-    TabsModule.forRoot(),
+    TabsModule,
+    MyBarChartComponent,
+    MyLineChartComponent,
+    MyDoughnutChartComponent,
+    MyRadarChartComponent,
+    MyPieChartComponent,
+  ],
+  providers: [
+    provideCharts(withDefaultRegisterables())
   ]
 })
 export class ChartModule { }

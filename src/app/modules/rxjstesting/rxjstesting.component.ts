@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { combineLatest, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from './_models/IUser';
 
 @Component({
-  selector: 'app-rxjstesting',
-  templateUrl: './rxjstesting.component.html',
-  styleUrls: ['./rxjstesting.component.scss'],
+    selector: 'app-rxjstesting',
+    templateUrl: './rxjstesting.component.html',
+    styleUrls: ['./rxjstesting.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class RxjstestingComponent implements OnInit {
   users: User[] = [

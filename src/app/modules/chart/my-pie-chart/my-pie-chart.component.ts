@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { BaseChartDirective } from 'ng2-charts';
 
 @Component({
-  selector: 'app-my-pie-chart',
-  templateUrl: './my-pie-chart.component.html',
-  styleUrls: ['./my-pie-chart.component.css']
+    selector: 'app-my-pie-chart',
+    templateUrl: './my-pie-chart.component.html',
+    styleUrls: ['./my-pie-chart.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: true,
+    imports: [BaseChartDirective]
 })
 export class MyPieChartComponent implements OnInit {
 
