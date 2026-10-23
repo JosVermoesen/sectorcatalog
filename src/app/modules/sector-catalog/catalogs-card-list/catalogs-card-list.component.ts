@@ -1,15 +1,20 @@
-import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
-import { ICatalog } from "../_models/ICatalog";
+import { ICatalog } from '../_models/ICatalog';
 import { CatalogDetailsComponent } from './../catalog-details/catalog-details.component';
 
 @Component({
-    selector: 'app-catalogs-card-list',
-    templateUrl: './catalogs-card-list.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: true
+  selector: 'app-catalogs-card-list',
+  templateUrl: './catalogs-card-list.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: true,
 })
 export class CatalogsCardListComponent implements OnInit {
   bsModalRef: BsModalRef;

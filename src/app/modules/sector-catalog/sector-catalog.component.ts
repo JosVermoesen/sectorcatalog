@@ -1,5 +1,13 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, computed, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  OnInit,
+  computed,
+  inject,
+  signal,
+} from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslatePipe } from '@ngx-translate/core';
 import { TabsModule } from 'ngx-bootstrap/tabs';
@@ -13,12 +21,12 @@ interface SectorCatalogResponse {
 }
 
 @Component({
-    selector: 'app-sector-catalog',
-    templateUrl: './sector-catalog.component.html',
-    styleUrls: ['./sector-catalog.component.scss'],
-    imports: [TabsModule, TranslatePipe],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: true
+  selector: 'app-sector-catalog',
+  templateUrl: './sector-catalog.component.html',
+  styleUrls: ['./sector-catalog.component.scss'],
+  imports: [TabsModule, TranslatePipe],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: true,
 })
 export class SectorCatalogComponent implements OnInit {
   private readonly http = inject(HttpClient);
@@ -27,8 +35,12 @@ export class SectorCatalogComponent implements OnInit {
   readonly apiError = signal(false);
   readonly isLoading = signal(true);
   readonly allCatalogs = signal<Company[]>([]);
-  readonly federations = computed(() => this.allCatalogs().filter((company) => company.Origin === 'FEDERATION'));
-  readonly insurers = computed(() => this.allCatalogs().filter((company) => company.Origin === 'COMPANY'));
+  readonly federations = computed(() =>
+    this.allCatalogs().filter((company) => company.Origin === 'FEDERATION'),
+  );
+  readonly insurers = computed(() =>
+    this.allCatalogs().filter((company) => company.Origin === 'COMPANY'),
+  );
 
   ngOnInit() {
     const sectorCatalogUrl =
@@ -40,20 +52,27 @@ export class SectorCatalogComponent implements OnInit {
       .pipe(
         map((response) => Object.values(response?.Companies ?? {})),
         finalize(() => this.isLoading.set(false)),
-        takeUntilDestroyed(this.destroyRef)
+        takeUntilDestroyed(this.destroyRef),
       )
       .subscribe({
         next: (companies) => {
           this.apiError.set(false);
           this.allCatalogs.set(companies);
           console.log('number of all:', companies.length);
-          console.log('number of federations:', companies.filter((company) => company.Origin === 'FEDERATION').length);
-          console.log('number of insurers:', companies.filter((company) => company.Origin === 'COMPANY').length);
+          console.log(
+            'number of federations:',
+            companies.filter((company) => company.Origin === 'FEDERATION')
+              .length,
+          );
+          console.log(
+            'number of insurers:',
+            companies.filter((company) => company.Origin === 'COMPANY').length,
+          );
         },
         error: () => {
           this.apiError.set(true);
           this.allCatalogs.set([]);
-        }
+        },
       });
   }
 

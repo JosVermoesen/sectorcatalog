@@ -4,6 +4,5 @@ import { SectorCatalogComponent } from './sector-catalog.component';
 
 export const SECTOR_CATALOG_ROUTES: Routes = [
   { path: '', component: SectorCatalogComponent },
-  { path: 'details', component: CatalogDetailsComponent }
+  { path: 'details', component: CatalogDetailsComponent },
 ];
-

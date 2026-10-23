@@ -1,80 +1,31 @@
 <!-- SECTION CAROUSEL -->
 <section id="showcase">
-  <carousel>
-    <!-- <slide>
-      <img
-        src="https://source.unsplash.com/random/1920x1280/?covid19"
-        alt="first slide"
-        style="display: block; width: 100%"
-      />
-      <div class="carousel-caption d-md-block">
-        <h1 class="display-2">Corona</h1>
-        <p class="lead">Covid19</p>
-        <a routerLink="/corona" class="btn btn-primary btn-lg">More Info</a>
-      </div>
-    </slide> -->
-    <slide>
-      <img
-        src="{{ 'HOME.Carousel-Image1' | translate }}"
-        alt="{{ 'HOME.Carousel-Alt1' | translate }}"
-        style="
-          display: block;
-          margin-left: auto;
-          margin-right: auto;
-          width: 60%;
-        "
-      />
-      <div class="carousel-caption d-md-block">
-        <h1 class="display-4">{{ "HOME.Carousel-Label1" | translate }}</h1>
-        <p class="lead">{{ "HOME.Carousel-Info1" | translate }}</p>
-        <a
-          routerLink="{{ 'HOME.Carousel-Link1' | translate }}"
-          class="btn btn-primary btn-lg"
-          >{{ "HOME.Carousel-Button1" | translate }}</a
-        >
-      </div>
-    </slide>
-    <slide>
-      <img
-        src="{{ 'HOME.Carousel-Image2' | translate }}"
-        alt="{{ 'HOME.Carousel-Alt2' | translate }}"
-        style="
-          display: block;
-          margin-left: auto;
-          margin-right: auto;
-          width: 60%;
-        "
-      />
-      <div class="carousel-caption d-md-block">
-        <h1 class="display-4">{{ "HOME.Carousel-Label2" | translate }}</h1>
-        <p class="lead">{{ "HOME.Carousel-Info2" | translate }}</p>
-        <a
-          routerLink="{{ 'HOME.Carousel-Link2' | translate }}"
-          class="btn btn-success btn-lg"
-          >{{ "HOME.Carousel-Button2" | translate }}</a
-        >
-      </div>
-    </slide>
-    <slide>
-      <img
-        src="{{ 'HOME.Carousel-Image3' | translate }}"
-        alt="{{ 'HOME.Carousel-Alt3' | translate }}"
-        style="
-          display: block;
-          margin-left: auto;
-          margin-right: auto;
-          width: 60%;
-        "
-      />
-      <div class="carousel-caption d-md-block">
-        <h1 class="display-4">{{ "HOME.Carousel-Label3" | translate }}</h1>
-        <p class="lead">{{ "HOME.Carousel-Info3" | translate }}</p>
-        <a
-          routerLink="{{ 'HOME.Carousel-Link3' | translate }}"
-          class="btn btn-danger btn-lg"
-          >{{ "HOME.Carousel-Button3" | translate }}</a
-        >
-      </div>
-    </slide>
-  </carousel>
+  <div class="simple-carousel position-relative">
+    @for (slide of slides; track slide.imageKey; let i = $index) {
+      @if (i === activeSlideIndex) {
+        <div class="carousel-item active">
+          <img
+            [src]="slide.imageKey | translate"
+            [alt]="slide.altKey | translate"
+            class="center"
+          />
+          <div class="carousel-caption d-md-block">
+            <h1 class="display-4">{{ slide.labelKey | translate }}</h1>
+            <p class="lead">{{ slide.infoKey | translate }}</p>
+            <a [routerLink]="slide.linkKey | translate" [class]="slide.buttonClass">
+              {{ slide.buttonKey | translate }}
+            </a>
+          </div>
+        </div>
+      }
+    }
+
+    <button type="button" class="carousel-control-prev" (click)="previousSlide()">
+      <span aria-hidden="true">&lsaquo;</span>
+    </button>
+    <button type="button" class="carousel-control-next" (click)="nextSlide()">
+      <span aria-hidden="true">&rsaquo;</span>
+    </button>
+
+  </div>
 </section>

@@ -5,24 +5,30 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { LanguageService } from '../../language.service';
 
 @Component({
-    selector: 'app-language',
-    templateUrl: './language.component.html',
-    styleUrls: ['./language.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: true
+  selector: 'app-language',
+  templateUrl: './language.component.html',
+  styleUrls: ['./language.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: true,
 })
 export class LanguageComponent implements OnInit {
   title = '';
   closeBtnName = '';
 
-  languages: Array<{ text: string; subtext: string; value: string; img: string; enabled: boolean }> = [];
+  languages: Array<{
+    text: string;
+    subtext: string;
+    value: string;
+    img: string;
+    enabled: boolean;
+  }> = [];
   selected = '';
 
   public onSelected: Subject<boolean> = new Subject<boolean>();
 
   constructor(
     public bsModalRef: BsModalRef,
-    private languageService: LanguageService
+    private languageService: LanguageService,
   ) {}
 
   public ngOnInit(): void {

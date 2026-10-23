@@ -8,68 +8,64 @@
             <div>
               <pre class="card card-block card-header">
                 {{ "COMMON.MessageApiWaiting" | translate }}</pre
-                >
-              </div>
-            }
-            @if (apiError()) {
-              <div>
-                <pre class="card card-block card-header">
+              >
+            </div>
+          }
+          @if (apiError()) {
+            <div>
+              <pre class="card card-block card-header">
                   {{ "COMMON.MessageApiError" | translate }}</pre
-                  >
-                </div>
-              }
+              >
+            </div>
+          }
 
-              @if (federations().length) {
+          @if (federations().length) {
+            <div>
+              <!-- <pre class="card card-block card-header">{{ federations$ | json }}</pre> -->
+              @for (item of federations(); track item.Code) {
                 <div>
-                  <!-- <pre class="card card-block card-header">{{ federations$ | json }}</pre> -->
-                  @for (item of federations(); track item.Code) {
-                    <div>
-                      <button (click)="federationCheck(item)">check</button> -
-                      {{ item.Code }} - {{ item.Name }} ({{
-                      item.Folders.length
-                      }}
-                      folders)
-                    </div>
-                  }
+                  <button (click)="federationCheck(item)">check</button> -
+                  {{ item.Code }} - {{ item.Name }} ({{ item.Folders.length }}
+                  folders)
                 </div>
               }
-            </tab>
+            </div>
+          }
+        </tab>
 
-            <tab heading="Insurers">
-              @if (insurers().length) {
+        <tab heading="Insurers">
+          @if (insurers().length) {
+            <div>
+              <!-- <pre class="card card-block card-header">{{ insurers$ | json }}</pre> -->
+              @for (item of insurers(); track item.Code) {
                 <div>
-                  <!-- <pre class="card card-block card-header">{{ insurers$ | json }}</pre> -->
-                  @for (item of insurers(); track item.Code) {
-                    <div>
-                      <button (click)="companyCheck(item)">check</button> -
-                      {{ item.Name }} ({{ item.Folders.length }} folders)
-                    </div>
-                  }
+                  <button (click)="companyCheck(item)">check</button> -
+                  {{ item.Name }} ({{ item.Folders.length }} folders)
                 </div>
               }
-            </tab>
+            </div>
+          }
+        </tab>
 
-            <tab heading="All (Json)">
-              @if (allCatalogs().length) {
+        <tab heading="All (Json)">
+          @if (allCatalogs().length) {
+            <div>
+              <!-- <pre class="card card-block card-header">{{ allCatalogs$ | json}}</pre> -->
+              @for (item of allCatalogs(); track item.Code) {
                 <div>
-                  <!-- <pre class="card card-block card-header">{{ allCatalogs$ | json}}</pre> -->
-                  @for (item of allCatalogs(); track item.Code) {
-                    <div>
-                      {{ item.Code }} - {{ item.Name }} ({{
-                      item.Folders.length
-                      }}
-                      folders)
-                    </div>
-                  }
+                  {{ item.Code }} - {{ item.Name }} ({{ item.Folders.length }}
+                  folders)
                 </div>
               }
-            </tab>
-          </tabset>
-        </div>
-      </div>
-    </section>
+            </div>
+          }
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</section>
 
-    <!-- <section id="sector-catalog" class="py-2">
+<!-- <section id="sector-catalog" class="py-2">
     <div class="container">
       <div class="card card-body mb-3">
         <div *ngIf="catalogsV2">

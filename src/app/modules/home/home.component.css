@@ -1,5 +1,6 @@
 .carousel-item {
   height: 450px;
+  position: relative;
 }
 
 .center {
@@ -8,6 +9,29 @@
   margin-right: auto;
   width: 60%;
 }
+
+.simple-carousel .carousel-control-prev,
+.simple-carousel .carousel-control-next {
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 3rem;
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  padding: 0 0.5rem;
+}
+
+.simple-carousel .carousel-control-prev {
+  left: 0.5rem;
+}
+
+.simple-carousel .carousel-control-next {
+  right: 0.5rem;
+}
+
 
 /* #video-play {
   position: relative;

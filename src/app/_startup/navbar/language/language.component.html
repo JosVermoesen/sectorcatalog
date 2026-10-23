@@ -1,6 +1,11 @@
 <div class="modal-header">
-  <h4 class="modal-title pull-left">{{title}}</h4>
-  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+  <h4 class="modal-title pull-left">{{ title }}</h4>
+  <button
+    type="button"
+    class="close pull-right"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
@@ -11,7 +16,7 @@
       @if (lng.enabled) {
         <div>
           <li class="media">
-            <img [src]="lng.img" class="mr-2 img-thumbnail" alt="lng.text">
+            <img [src]="lng.img" class="mr-2 img-thumbnail" alt="lng.text" />
             <div class="media-body">
               <h5 class="mt-0 mb-1">{{ lng.text }}</h5>
               {{ lng.subtext }}
@@ -24,5 +29,7 @@
 </div>
 
 <div class="modal-footer">
-  <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">{{closeBtnName}}</button>
+  <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">
+    {{ closeBtnName }}
+  </button>
 </div>
