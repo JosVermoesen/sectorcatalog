@@ -22,8 +22,8 @@ const routes: Routes = [
   {
     path: 'unsplash',
     loadChildren: () =>
-      import('./modules/unsplash/unsplash.module').then(
-        (m) => m.UnsplashModule
+      import('./modules/unsplash/unsplash.routes').then(
+        (m) => m.UNSPLASH_ROUTES
       ),
   },
   {

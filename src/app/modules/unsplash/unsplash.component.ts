@@ -5,7 +5,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
     templateUrl: './unsplash.component.html',
     styleUrls: ['./unsplash.component.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    standalone: true
 })
 export class UnsplashComponent implements OnInit {
 
