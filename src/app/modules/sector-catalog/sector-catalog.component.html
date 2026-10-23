@@ -4,14 +4,14 @@
     <div class="card card-body mb-3">
       <tabset #staticTabs>
         <tab heading="Federations">
-          @if (!insurers$) {
+          @if (isLoading()) {
             <div>
               <pre class="card card-block card-header">
                 {{ "COMMON.MessageApiWaiting" | translate }}</pre
                 >
               </div>
             }
-            @if (apiError) {
+            @if (apiError()) {
               <div>
                 <pre class="card card-block card-header">
                   {{ "COMMON.MessageApiError" | translate }}</pre
@@ -19,10 +19,10 @@
                 </div>
               }
 
-              @if (federations$) {
+              @if (federations().length) {
                 <div>
                   <!-- <pre class="card card-block card-header">{{ federations$ | json }}</pre> -->
-                  @for (item of federations$; track item) {
+                  @for (item of federations(); track item.Code) {
                     <div>
                       <button (click)="federationCheck(item)">check</button> -
                       {{ item.Code }} - {{ item.Name }} ({{
@@ -36,10 +36,10 @@
             </tab>
 
             <tab heading="Insurers">
-              @if (insurers$) {
+              @if (insurers().length) {
                 <div>
                   <!-- <pre class="card card-block card-header">{{ insurers$ | json }}</pre> -->
-                  @for (item of insurers$; track item) {
+                  @for (item of insurers(); track item.Code) {
                     <div>
                       <button (click)="companyCheck(item)">check</button> -
                       {{ item.Name }} ({{ item.Folders.length }} folders)
@@ -50,10 +50,10 @@
             </tab>
 
             <tab heading="All (Json)">
-              @if (allCatalogs$) {
+              @if (allCatalogs().length) {
                 <div>
                   <!-- <pre class="card card-block card-header">{{ allCatalogs$ | json}}</pre> -->
-                  @for (item of allCatalogs$; track item) {
+                  @for (item of allCatalogs(); track item.Code) {
                     <div>
                       {{ item.Code }} - {{ item.Name }} ({{
                       item.Folders.length

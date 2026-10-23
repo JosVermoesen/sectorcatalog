@@ -1,10 +1,14 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { noop } from 'rxjs';
-import { createHttpObservable } from './_common/util';
-import { map, shareReplay, tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, computed, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { finalize, map } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 import { Company, Folder } from './_models/ICatalog';
+
+interface SectorCatalogResponse {
+  Companies: Record<string, Company>;
+}
 
 @Component({
     selector: 'app-sector-catalog',
@@ -14,45 +18,40 @@ import { Company, Folder } from './_models/ICatalog';
     standalone: false
 })
 export class SectorCatalogComponent implements OnInit {
-  apiError = false;
+  private readonly http = inject(HttpClient);
+  private readonly destroyRef = inject(DestroyRef);
 
-  federations$: Company[] = [];
-  insurers$: Company[] = [];
-  insurer$: Company[] = [];
-  allCatalogs$: Company[] = [];
+  readonly apiError = signal(false);
+  readonly isLoading = signal(true);
+  readonly allCatalogs = signal<Company[]>([]);
+  readonly federations = computed(() => this.allCatalogs().filter((company) => company.Origin === 'FEDERATION'));
+  readonly insurers = computed(() => this.allCatalogs().filter((company) => company.Origin === 'COMPANY'));
 
-  whateverResult$: any;
-  searchResult$: any;
-
-  constructor() {}
-
-  ngOnInit() {    
+  ngOnInit() {
     const sectorCatalogUrl =
       'https://app.sectorcatalog.be/SectorCatalogBE/feed/v2/digestedcatalogItems?format=json&SecureGuid=' +
       environment.brokerKey;
 
-    const http$ = createHttpObservable(sectorCatalogUrl);
-    this.whateverResult$ = http$.pipe(
-      tap(() => console.log('HTTP request executed')),
-      map((res: any) => Object.values((res as any)?.Companies ?? {})),
-      shareReplay()
-    );
-
-    this.whateverResult$.subscribe(
-      (res: Company[]) => {
-        console.log(res.length);
-        this.allCatalogs$ = res;
-        this.federations$ = res.filter((res) => res.Origin == 'FEDERATION');
-        this.insurers$ = res.filter((res) => res.Origin == 'COMPANY');
-      },
-      noop,
-      () => {
-        console.log('completed');
-        console.log('number of all: ', this.allCatalogs$.length);
-        console.log('number of federations: ', this.federations$.length);
-        console.log('number of insurers: ', this.insurers$.length);
-      }
-    );
+    this.http
+      .get<SectorCatalogResponse>(sectorCatalogUrl)
+      .pipe(
+        map((response) => Object.values(response?.Companies ?? {})),
+        finalize(() => this.isLoading.set(false)),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe({
+        next: (companies) => {
+          this.apiError.set(false);
+          this.allCatalogs.set(companies);
+          console.log('number of all:', companies.length);
+          console.log('number of federations:', companies.filter((company) => company.Origin === 'FEDERATION').length);
+          console.log('number of insurers:', companies.filter((company) => company.Origin === 'COMPANY').length);
+        },
+        error: () => {
+          this.apiError.set(true);
+          this.allCatalogs.set([]);
+        }
+      });
   }
 
   companyCheck(choosen: Company) {
